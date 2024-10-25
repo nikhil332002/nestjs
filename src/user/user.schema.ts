@@ -1,8 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { IsEmail, IsNumber, IsString } from "class-validator";
 import { Document } from 'mongoose';
 
 @Schema()
 export class userSchema extends Document{
+
     @Prop()
     id:number;
 

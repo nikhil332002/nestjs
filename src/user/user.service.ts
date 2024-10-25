@@ -12,7 +12,20 @@ export class UserService {
         return user.save()
     }
 
-    find(email:string){
-        return this.userModel.find({where:{email}})
+
+    async find(email:string){
+        return this.userModel.find({email}).exec();
     }
+
+    async update(email:string,attrs:Partial<userSchema>){
+        const user = await this.userModel.findOne({email})
+        Object.assign(user,attrs)
+        return user.save();
+    }
+
+    async remove(email:string){
+        const user = await this.userModel.findOneAndDelete({email})
+        return user;
+    }
+
 }
